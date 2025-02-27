@@ -87,6 +87,11 @@ public class BST<Key extends Comparable<Key>, Value>{
     public boolean contains(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to contains() is null");
         // Student TODO
+        if (get(root,key) == null) {
+            return false;
+        } else {
+            return true;
+        }
         // return 
         // we are going to do same number of operations for get and contains, so why not re-use the get method here
     }
@@ -106,7 +111,16 @@ public class BST<Key extends Comparable<Key>, Value>{
     private Value get(Node x, Key key) {
         if (key == null) throw new IllegalArgumentException("calls get() with a null key");
         // Student TODO
-       
+
+       if (x == null) {
+           return null;
+       } else if (key.compareTo(x.key) == 0) {
+           return x.val;
+       } else if (key.compareTo(x.key) < 0) {
+           return get(x.left, key);
+       } else {
+           return get(x.right, key);
+       }
     }
 
 
